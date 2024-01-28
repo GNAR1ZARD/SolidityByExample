@@ -1,0 +1,4 @@
+function functionName(parameter1Type parameter1Name, parameter2Type parameter2Name, ...) visibility modifiers returns (returnType) {
+    // Function body
+    // ...
+}
