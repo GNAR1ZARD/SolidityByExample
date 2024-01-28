@@ -1,31 +1,44 @@
-// Ether Wallet
-// An example of a basic wallet.
+/**
+ * @title Ether Wallet
+ * @notice An example of a basic wallet.
+ * @dev Anyone can send ETH, but only the owner can withdraw.
+ * SPDX-License-Identifier: MIT
+ */
+pragma solidity ^0.8.0; // Specify the compiler version
 
-// Anyone can send ETH.
-// Only the owner can withdraw.
+contract EtherWallet {
+    /**
+     * @notice The owner's Ethereum address.
+     */
+    address payable public owner;
 
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0; // specify compiler version
-
-contract EtherWallet { // def a new contract 
-
-    address payable public owner; // declare a public variable 'owner' of type 'address payable'
-
+    /**
+     * @dev Initializes the contract and sets the deployer as the owner.
+     */
     constructor() {
-        // constructor, a special func called at contract deployment
-        owner = payable(msg.sender); // set 'owner' to the address deploying the contract, ensuring its payable
+        owner = payable(msg.sender);
     }
 
-    receive() external payable {} // special func to receive ether. 'external' means its callable from outside
+    /**
+     * @notice A special function to receive Ether sent to this contract.
+     * @dev It's callable from outside the contract.
+     */
+    receive() external payable {}
 
+    /**
+     * @notice Allows the owner to withdraw a specific amount of Ether.
+     * @param _amount The amount of Ether to withdraw.
+     */
     function withdraw(uint _amount) external {
-        // func 'withdraw' to take out ether
-        require(msg.sender == owner, "caller is not owner"); // check if the caller is the owner, error if not
-        payable(msg.sender).transfer(_amount); // send specified '_amount' of ether to the caller
+        require(msg.sender == owner, "caller is not owner");
+        payable(msg.sender).transfer(_amount);
     }
 
+    /**
+     * @notice Get the current Ether balance of the contract.
+     * @return The current balance in Wei.
+     */
     function getBalance() external view returns (uint) {
-        // func to check contracts ether balance
-        return address(this).balance; // return the ether balance
+        return address(this).balance;
     }
 }
