@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-
 // Enums can be declared outside of a contract.
 enum Status {
     Pending,
@@ -13,9 +12,7 @@ enum Status {
     Canceled
 }
 
-
 contract Enum {
-
     // Default value is the first element listed in
     // definition of the type, in this case "Pending"
     Status public status;
