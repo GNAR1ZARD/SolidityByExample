@@ -1,15 +1,20 @@
+// Solidity supports enumerables and they are useful to model choice and keep track of state.
+
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
+
+// Enums can be declared outside of a contract.
+enum Status {
+    Pending,
+    Shipped,
+    Accepted,
+    Rejected,
+    Canceled
+}
+
+
 contract Enum {
-    // Enum representing shipping status
-    enum Status {
-        Pending,
-        Shipped,
-        Accepted,
-        Rejected,
-        Canceled
-    }
 
     // Default value is the first element listed in
     // definition of the type, in this case "Pending"
